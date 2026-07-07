@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PrecisionCalc | High-Performance Tool</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-container": "#dce0e4",
+                    "tertiary": "#824600",
+                    "primary-container": "#2563eb",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "tertiary-container": "#a55a00",
+                    "on-tertiary-fixed": "#2e1500",
+                    "tertiary-fixed": "#ffdcc2",
+                    "inverse-on-surface": "#eef0ff",
+                    "inverse-primary": "#b4c5ff",
+                    "surface-container-high": "#e2e7ff",
+                    "on-tertiary": "#ffffff",
+                    "surface-variant": "#dae2fd",
+                    "surface-dim": "#d2d9f4",
+                    "on-surface": "#131b2e",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb77b",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "on-tertiary-fixed-variant": "#6d3a00",
+                    "surface-container-highest": "#dae2fd",
+                    "primary-fixed": "#dbe1ff",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#f2f3ff",
+                    "on-primary": "#ffffff",
+                    "background": "#faf8ff",
+                    "outline": "#737686",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed-dim": "#c3c7cb",
+                    "secondary-fixed": "#dfe3e7",
+                    "primary": "#004ac6",
+                    "error-container": "#ffdad6",
+                    "surface-bright": "#faf8ff",
+                    "error": "#ba1a1a",
+                    "outline-variant": "#c3c6d7",
+                    "on-primary-fixed": "#00174b",
+                    "surface": "#faf8ff",
+                    "on-surface-variant": "#434655",
+                    "secondary": "#5a5f62",
+                    "on-background": "#131b2e",
+                    "on-secondary-container": "#5e6367",
+                    "on-tertiary-container": "#ffede1",
+                    "on-secondary-fixed": "#171c1f",
+                    "on-secondary-fixed-variant": "#43474b",
+                    "on-primary-container": "#eeefff",
+                    "inverse-surface": "#283044",
+                    "surface-tint": "#0053db",
+                    "surface-container": "#eaedff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "16px",
+                    "button-gutter": "12px",
+                    "xl": "32px",
+                    "sm": "8px",
+                    "unit": "4px",
+                    "lg": "24px",
+                    "xs": "4px",
+                    "container-padding": "24px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "display-formula": ["Inter"],
+                    "button-label": ["Inter"],
+                    "display-result": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "display-formula": ["18px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "button-label": ["20px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "500"}],
+                    "display-result": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .calc-button-shadow {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        .calc-button-active {
+            transform: translateY(1px);
+            box-shadow: none;
+        }
+        body {
+            background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCT6MbAf5SgBO0g_eRS7mKwRhObEfo_wjk0zMWpQTKeJgVh_oZZLk2MjlCVjf7rl--PQpQa6HpGB7YYrOYxY8Jxpa0I4SUA4tahIgpu854IWFYgBcB5SnxjxbEod1HnJ2Xxl3xsthMN0N3zXZA8PE_9prnqvNc78HFRUxdI2yomJsFUwYZYjsC6atdoiVhHt31XNew4DAnLiC81w9BIuhpm42hTI36nYMB5DfPqxv9V8YoOZbcmUQnkzF3D4o_whaClFUUsuNTOkik');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body class="text-on-background min-h-screen font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed flex flex-col">
+<main class="flex-1 flex items-center justify-center p-md lg:p-lg">
+<!-- Calculator Core - Focused and Centered -->
+<div class="w-full max-w-[420px] bg-surface-container-lowest/90 backdrop-blur-md rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.2)] overflow-hidden border border-white/40 flex flex-col">
+<!-- Display Area -->
+<div class="p-lg bg-surface-container-low/50 text-right flex flex-col justify-end min-h-[180px] border-b border-outline-variant/20">
+<div class="font-display-formula text-display-formula text-on-surface-variant mb-unit tracking-wide min-h-[24px]" id="display-formula"></div>
+<div class="font-display-result text-display-result text-on-surface break-all truncate" id="display-result">0</div>
+</div>
+<!-- Keypad Grid -->
+<div class="p-lg grid grid-cols-4 gap-button-gutter">
+<!-- Row 1: Utilities -->
+<button class="calc-button-shadow h-16 rounded-lg bg-secondary-container text-on-secondary-container font-button-label text-button-label hover:brightness-95 active:calc-button-active transition-all" onclick="clearCalc()">AC</button>
+<button class="calc-button-shadow h-16 rounded-lg bg-secondary-container text-on-secondary-container font-button-label text-button-label hover:brightness-95 active:calc-button-active transition-all">+/-</button>
+<button class="calc-button-shadow h-16 rounded-lg bg-secondary-container text-on-secondary-container font-button-label text-button-label hover:brightness-95 active:calc-button-active transition-all">%</button>
+<button class="calc-button-shadow h-16 rounded-lg bg-primary text-white font-button-label text-button-label hover:brightness-110 active:calc-button-active transition-all flex items-center justify-center" onclick="appendOperator('/')">
+<span class="material-symbols-outlined">dine_in</span>
+</button>
+<!-- Row 2 -->
+<button class="calc-button-shadow h-16 rounded-lg bg-surface-container-high text-on-surface font-button-label text-button-label hover:brightness-95 active:calc-button-active transition-all" onclick="appendNumber('7')">7</button>
+<button class="calc-button-shadow h-16 rounded-lg bg-surface-container-high text-on-surface font-button-label text-button-label hover:brightness-95 active:calc-button-active transition-all" onclick="appendNumber('8')">8</button>
+<button class="calc-button-shadow h-16 rounded-lg bg-surface-container-high text-on-surface font-button-label text-button-label hover:brightness-95 active:calc-button-active transition-all" onclick="appendNumber('9')">9</button>
+<button class="calc-button-shadow h-16 rounded-lg bg-primary text-white font-button-label text-button-label hover:brightness-110 active:calc-button-active transition-all flex items-center justify-center" onclick="appendOperator('*')">
+<span class="material-symbols-outlined">close</span>
+</button>
+<!-- Row 3 -->
+<button class="calc-button-shadow h-16 rounded-lg bg-surface-container-high text-on-surface font-button-label text-button-label hover:brightness-95 active:calc-button-active transition-all" onclick="appendNumber('4')">4</button>
+<button class="calc-button-shadow h-16 rounded-lg bg-surface-container-high text-on-surface font-button-label text-button-label hover:brightness-95 active:calc-button-active transition-all" onclick="appendNumber('5')">5</button>
+<button class="calc-button-shadow h-16 rounded-lg bg-surface-container-high text-on-surface font-button-label text-button-label hover:brightness-95 active:calc-button-active transition-all" onclick="appendNumber('6')">6</button>
+<button class="calc-button-shadow h-16 rounded-lg bg-primary text-white font-button-label text-button-label hover:brightness-110 active:calc-button-active transition-all flex items-center justify-center" onclick="appendOperator('-')">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<!-- Row 4 -->
+<button class="calc-button-shadow h-16 rounded-lg bg-surface-container-high text-on-surface font-button-label text-button-label hover:brightness-95 active:calc-button-active transition-all" onclick="appendNumber('1')">1</button>
+<button class="calc-button-shadow h-16 rounded-lg bg-surface-container-high text-on-surface font-button-label text-button-label hover:brightness-95 active:calc-button-active transition-all" onclick="appendNumber('2')">2</button>
+<button class="calc-button-shadow h-16 rounded-lg bg-surface-container-high text-on-surface font-button-label text-button-label hover:brightness-95 active:calc-button-active transition-all" onclick="appendNumber('3')">3</button>
+<button class="calc-button-shadow h-16 rounded-lg bg-primary text-white font-button-label text-button-label hover:brightness-110 active:calc-button-active transition-all flex items-center justify-center" onclick="appendOperator('+')">
+<span class="material-symbols-outlined">add</span>
+</button>
+<!-- Row 5 -->
+<button class="col-span-2 calc-button-shadow h-16 rounded-lg bg-surface-container-high text-on-surface font-button-label text-button-label hover:brightness-95 active:calc-button-active transition-all text-left px-lg" onclick="appendNumber('0')">0</button>
+<button class="calc-button-shadow h-16 rounded-lg bg-surface-container-high text-on-surface font-button-label text-button-label hover:brightness-95 active:calc-button-active transition-all" onclick="appendNumber('.')">.</button>
+<button class="calc-button-shadow h-16 rounded-lg bg-primary text-white font-button-label text-button-label hover:brightness-110 active:calc-button-active transition-all flex items-center justify-center" onclick="calculateResult()">
+<span class="material-symbols-outlined">equal</span>
+</button>
+</div>
+</div>
+</main>
+<script>
+        // Simple Calculator Logic for UX feedback
+        let currentInput = "0";
+        let formula = "";
+        
+        const displayResult = document.getElementById('display-result');
+        const displayFormula = document.getElementById('display-formula');
+
+        function updateDisplay() {
+            displayResult.innerText = currentInput;
+            displayFormula.innerText = formula;
+        }
+
+        function appendNumber(num) {
+            if (currentInput === "0" && num !== ".") {
+                currentInput = num;
+            } else {
+                currentInput += num;
+            }
+            updateDisplay();
+        }
+
+        function appendOperator(op) {
+            formula = currentInput + " " + op + " ";
+            currentInput = "0";
+            updateDisplay();
+        }
+
+        function clearCalc() {
+            currentInput = "0";
+            formula = "";
+            updateDisplay();
+        }
+
+        function calculateResult() {
+            try {
+                // Warning: eval is used here only for demonstration of a calculator UI interaction
+                const result = eval(formula + currentInput);
+                formula = formula + currentInput + " =";
+                currentInput = result.toString();
+                updateDisplay();
+            } catch (e) {
+                currentInput = "Error";
+                updateDisplay();
+            }
+        }
+
+        // Add subtle interaction sound/haptic feedback simulation
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mousedown', () => {
+                if (window.navigator.vibrate) window.navigator.vibrate(5);
+            });
+        });
+    </script>
+</body></html>

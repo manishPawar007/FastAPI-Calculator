@@ -1,6 +1,6 @@
-# FastAPI Calculator
+# 🚀 FastAPI Calculator
 
-A simple calculator using FastAPI and HTML.
+A modern Calculator built using FastAPI as backend and HTML, CSS, JavaScript as frontend.
 
 ## Features
 
@@ -9,20 +9,18 @@ A simple calculator using FastAPI and HTML.
 - Multiplication
 - Division
 - Modulus
+- FastAPI REST API
+- Beautiful UI
 
-## Technologies
+## Technologies Used
 
+- Python
 - FastAPI
-- HTML
-- CSS
+- HTML5
+- CSS3
 - JavaScript
 
-## Run
+## Installation
 
-Install packages
-
+```bash
 pip install -r requirements.txt
-
-Run
-
-uvicorn main:app --reload
